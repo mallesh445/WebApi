@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ShipbobInsightsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Modules">
+          <Key>
+            <PropertyRef Name="ModuleId" />
+          </Key>
+          <Property Name="ModuleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Operations">
+          <Key>
+            <PropertyRef Name="OperationId" />
+          </Key>
+          <Property Name="OperationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Operation Title" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Parameters">
+          <Key>
+            <PropertyRef Name="ParameterId" />
+          </Key>
+          <Property Name="ParameterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScriptId" Type="int" Nullable="false" />
+          <Property Name="ParameterName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="50" />
+          <Property Name="ParameterTitle" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Scripts">
+          <Key>
+            <PropertyRef Name="ScriptId" />
+          </Key>
+          <Property Name="ScriptId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModuleId" Type="int" Nullable="false" />
+          <Property Name="OperationId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Script" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="TableName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Parameter__Scrip__38996AB5">
+          <End Role="Scripts" Type="Self.Scripts" Multiplicity="1" />
+          <End Role="Parameters" Type="Self.Parameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Scripts">
+              <PropertyRef Name="ScriptId" />
+            </Principal>
+            <Dependent Role="Parameters">
+              <PropertyRef Name="ScriptId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Scripts__ModuleI__34C8D9D1">
+          <End Role="Modules" Type="Self.Modules" Multiplicity="1" />
+          <End Role="Scripts" Type="Self.Scripts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modules">
+              <PropertyRef Name="ModuleId" />
+            </Principal>
+            <Dependent Role="Scripts">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Scripts__Operati__37A5467C">
+          <End Role="Operations" Type="Self.Operations" Multiplicity="1" />
+          <End Role="Scripts" Type="Self.Scripts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Operations">
+              <PropertyRef Name="OperationId" />
+            </Principal>
+            <Dependent Role="Scripts">
+              <PropertyRef Name="OperationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShipbobInsightsModelStoreContainer">
+          <EntitySet Name="Modules" EntityType="Self.Modules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Operations" EntityType="Self.Operations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parameters" EntityType="Self.Parameters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Scripts" EntityType="Self.Scripts" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Parameter__Scrip__38996AB5" Association="Self.FK__Parameter__Scrip__38996AB5">
+            <End Role="Scripts" EntitySet="Scripts" />
+            <End Role="Parameters" EntitySet="Parameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Scripts__ModuleI__34C8D9D1" Association="Self.FK__Scripts__ModuleI__34C8D9D1">
+            <End Role="Modules" EntitySet="Modules" />
+            <End Role="Scripts" EntitySet="Scripts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Scripts__Operati__37A5467C" Association="Self.FK__Scripts__Operati__37A5467C">
+            <End Role="Operations" EntitySet="Operations" />
+            <End Role="Scripts" EntitySet="Scripts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ShipbobInsightsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="ModuleId" />
+          </Key>
+          <Property Name="ModuleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Scripts" Relationship="Self.FK__Scripts__ModuleI__34C8D9D1" FromRole="Modules" ToRole="Scripts" />
+        </EntityType>
+        <EntityType Name="Operation">
+          <Key>
+            <PropertyRef Name="OperationId" />
+          </Key>
+          <Property Name="OperationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Operation_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Scripts" Relationship="Self.FK__Scripts__Operati__37A5467C" FromRole="Operations" ToRole="Scripts" />
+        </EntityType>
+        <EntityType Name="Parameter">
+          <Key>
+            <PropertyRef Name="ParameterId" />
+          </Key>
+          <Property Name="ParameterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScriptId" Type="Int32" Nullable="false" />
+          <Property Name="ParameterName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ParameterTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Script" Relationship="Self.FK__Parameter__Scrip__38996AB5" FromRole="Parameters" ToRole="Scripts" />
+        </EntityType>
+        <EntityType Name="Script">
+          <Key>
+            <PropertyRef Name="ScriptId" />
+          </Key>
+          <Property Name="ScriptId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModuleId" Type="Int32" Nullable="false" />
+          <Property Name="OperationId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Script1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Module" Relationship="Self.FK__Scripts__ModuleI__34C8D9D1" FromRole="Scripts" ToRole="Modules" />
+          <NavigationProperty Name="Operation" Relationship="Self.FK__Scripts__Operati__37A5467C" FromRole="Scripts" ToRole="Operations" />
+          <NavigationProperty Name="Parameters" Relationship="Self.FK__Parameter__Scrip__38996AB5" FromRole="Scripts" ToRole="Parameters" />
+        </EntityType>
+        <Association Name="FK__Scripts__ModuleI__34C8D9D1">
+          <End Role="Modules" Type="Self.Module" Multiplicity="1" />
+          <End Role="Scripts" Type="Self.Script" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modules">
+              <PropertyRef Name="ModuleId" />
+            </Principal>
+            <Dependent Role="Scripts">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Scripts__Operati__37A5467C">
+          <End Role="Operations" Type="Self.Operation" Multiplicity="1" />
+          <End Role="Scripts" Type="Self.Script" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Operations">
+              <PropertyRef Name="OperationId" />
+            </Principal>
+            <Dependent Role="Scripts">
+              <PropertyRef Name="OperationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Parameter__Scrip__38996AB5">
+          <End Role="Scripts" Type="Self.Script" Multiplicity="1" />
+          <End Role="Parameters" Type="Self.Parameter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Scripts">
+              <PropertyRef Name="ScriptId" />
+            </Principal>
+            <Dependent Role="Parameters">
+              <PropertyRef Name="ScriptId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShipbobInsightsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Modules" EntityType="Self.Module" />
+          <EntitySet Name="Operations" EntityType="Self.Operation" />
+          <EntitySet Name="Parameters" EntityType="Self.Parameter" />
+          <EntitySet Name="Scripts" EntityType="Self.Script" />
+          <AssociationSet Name="FK__Scripts__ModuleI__34C8D9D1" Association="Self.FK__Scripts__ModuleI__34C8D9D1">
+            <End Role="Modules" EntitySet="Modules" />
+            <End Role="Scripts" EntitySet="Scripts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Scripts__Operati__37A5467C" Association="Self.FK__Scripts__Operati__37A5467C">
+            <End Role="Operations" EntitySet="Operations" />
+            <End Role="Scripts" EntitySet="Scripts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Parameter__Scrip__38996AB5" Association="Self.FK__Parameter__Scrip__38996AB5">
+            <End Role="Scripts" EntitySet="Scripts" />
+            <End Role="Parameters" EntitySet="Parameters" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ShipbobInsightsModelStoreContainer" CdmEntityContainer="ShipbobInsightsEntities">
+          <EntitySetMapping Name="Modules">
+            <EntityTypeMapping TypeName="ShipbobInsightsModel.Module">
+              <MappingFragment StoreEntitySet="Modules">
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Operations">
+            <EntityTypeMapping TypeName="ShipbobInsightsModel.Operation">
+              <MappingFragment StoreEntitySet="Operations">
+                <ScalarProperty Name="OperationId" ColumnName="OperationId" />
+                <ScalarProperty Name="Operation_Title" ColumnName="Operation Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parameters">
+            <EntityTypeMapping TypeName="ShipbobInsightsModel.Parameter">
+              <MappingFragment StoreEntitySet="Parameters">
+                <ScalarProperty Name="ParameterId" ColumnName="ParameterId" />
+                <ScalarProperty Name="ScriptId" ColumnName="ScriptId" />
+                <ScalarProperty Name="ParameterName" ColumnName="ParameterName" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ParameterTitle" ColumnName="ParameterTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Scripts">
+            <EntityTypeMapping TypeName="ShipbobInsightsModel.Script">
+              <MappingFragment StoreEntitySet="Scripts">
+                <ScalarProperty Name="ScriptId" ColumnName="ScriptId" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="OperationId" ColumnName="OperationId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Script1" ColumnName="Script" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

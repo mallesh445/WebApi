@@ -1,0 +1,25 @@
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\Service\bin\Debug\Service.dll
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\Service\bin\Debug\Service.pdb
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\Service\bin\Debug\BusinessObjects.dll
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\Service\bin\Debug\RepositoryLayer.dll
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\Service\bin\Debug\BusinessObjects.pdb
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\Service\bin\Debug\RepositoryLayer.pdb
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\Service\obj\Debug\ServiceLayer.csprojAssemblyReference.cache
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\Service\obj\Debug\ServiceLayer.csproj.CoreCompileInputs.cache
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\Service\obj\Debug\ServiceLayer.csproj.CopyComplete
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\Service\obj\Debug\Service.dll
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\Service\obj\Debug\Service.pdb
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\Service\bin\Debug\Service.dll
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\Service\bin\Debug\Service.pdb
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\Service\bin\Debug\BusinessObjects.dll
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\Service\bin\Debug\RepositoryLayer.dll
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\Service\bin\Debug\EntityFramework.dll
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\Service\bin\Debug\BusinessObjects.pdb
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\Service\bin\Debug\RepositoryLayer.pdb
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\Service\bin\Debug\RepositoryLayer.dll.config
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\Service\bin\Debug\EntityFramework.xml
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\Service\obj\Debug\ServiceLayer.csprojAssemblyReference.cache
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\Service\obj\Debug\ServiceLayer.csproj.CoreCompileInputs.cache
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\Service\obj\Debug\ServiceLayer.csproj.CopyComplete
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\Service\obj\Debug\Service.dll
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\Service\obj\Debug\Service.pdb

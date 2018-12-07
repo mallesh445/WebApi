@@ -1,0 +1,24 @@
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\RepositoryLayer\bin\Debug\RepositoryLayer.dll
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\RepositoryLayer\bin\Debug\RepositoryLayer.pdb
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\RepositoryLayer\bin\Debug\BusinessObjects.dll
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\RepositoryLayer\bin\Debug\BusinessObjects.pdb
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\RepositoryLayer\obj\Debug\RepositoryLayer.csprojAssemblyReference.cache
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\RepositoryLayer\obj\Debug\RepositoryLayer.csproj.CoreCompileInputs.cache
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\RepositoryLayer\obj\Debug\RepositoryLayer.csproj.CopyComplete
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\RepositoryLayer\obj\Debug\RepositoryLayer.dll
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\RepositoryLayer\obj\Debug\RepositoryLayer.pdb
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\RepositoryLayer\bin\Debug\RepositoryLayer.dll.config
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\RepositoryLayer\bin\Debug\RepositoryLayer.dll
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\RepositoryLayer\bin\Debug\RepositoryLayer.pdb
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\RepositoryLayer\bin\Debug\BusinessObjects.dll
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\RepositoryLayer\bin\Debug\EntityFramework.dll
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\RepositoryLayer\bin\Debug\EntityFramework.SqlServer.dll
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\RepositoryLayer\bin\Debug\System.Data.Entity.Repository.dll
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\RepositoryLayer\bin\Debug\BusinessObjects.pdb
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\RepositoryLayer\bin\Debug\EntityFramework.xml
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\RepositoryLayer\bin\Debug\EntityFramework.SqlServer.xml
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\RepositoryLayer\obj\Debug\RepositoryLayer.csprojAssemblyReference.cache
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\RepositoryLayer\obj\Debug\RepositoryLayer.csproj.CoreCompileInputs.cache
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\RepositoryLayer\obj\Debug\RepositoryLayer.csproj.CopyComplete
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\RepositoryLayer\obj\Debug\RepositoryLayer.dll
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\RepositoryLayer\obj\Debug\RepositoryLayer.pdb

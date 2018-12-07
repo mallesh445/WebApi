@@ -1,0 +1,11 @@
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\BusinessObjects\bin\Debug\BusinessObjects.dll
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\BusinessObjects\bin\Debug\BusinessObjects.pdb
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\BusinessObjects\obj\Debug\BusinessObjects.csproj.CoreCompileInputs.cache
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\BusinessObjects\obj\Debug\BusinessObjects.dll
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\BusinessObjects\obj\Debug\BusinessObjects.pdb
+E:\Mallesh\Practice Visualstudio\WebApiWithSwagger\BusinessObjects\obj\Debug\BusinessObjects.csprojAssemblyReference.cache
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\BusinessObjects\bin\Debug\BusinessObjects.dll
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\BusinessObjects\bin\Debug\BusinessObjects.pdb
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\BusinessObjects\obj\Debug\BusinessObjects.csproj.CoreCompileInputs.cache
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\BusinessObjects\obj\Debug\BusinessObjects.dll
+D:\Mallesh\Shipbob\WebApiWithSwagger\WebApiWithSwagger\BusinessObjects\obj\Debug\BusinessObjects.pdb

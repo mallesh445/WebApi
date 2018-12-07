@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ShipbobInsightsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Module">
+    <Key>
+      <PropertyRef Name="ModuleId" />
+    </Key>
+    <Property Name="ModuleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Scripts" Relationship="Self.FK__Scripts__ModuleI__34C8D9D1" FromRole="Modules" ToRole="Scripts" />
+  </EntityType>
+  <EntityType Name="Operation">
+    <Key>
+      <PropertyRef Name="OperationId" />
+    </Key>
+    <Property Name="OperationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Operation_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Scripts" Relationship="Self.FK__Scripts__Operati__37A5467C" FromRole="Operations" ToRole="Scripts" />
+  </EntityType>
+  <EntityType Name="Parameter">
+    <Key>
+      <PropertyRef Name="ParameterId" />
+    </Key>
+    <Property Name="ParameterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ScriptId" Type="Int32" Nullable="false" />
+    <Property Name="ParameterName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ParameterTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Script" Relationship="Self.FK__Parameter__Scrip__38996AB5" FromRole="Parameters" ToRole="Scripts" />
+  </EntityType>
+  <EntityType Name="Script">
+    <Key>
+      <PropertyRef Name="ScriptId" />
+    </Key>
+    <Property Name="ScriptId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ModuleId" Type="Int32" Nullable="false" />
+    <Property Name="OperationId" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Script1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Module" Relationship="Self.FK__Scripts__ModuleI__34C8D9D1" FromRole="Scripts" ToRole="Modules" />
+    <NavigationProperty Name="Operation" Relationship="Self.FK__Scripts__Operati__37A5467C" FromRole="Scripts" ToRole="Operations" />
+    <NavigationProperty Name="Parameters" Relationship="Self.FK__Parameter__Scrip__38996AB5" FromRole="Scripts" ToRole="Parameters" />
+  </EntityType>
+  <Association Name="FK__Scripts__ModuleI__34C8D9D1">
+    <End Role="Modules" Type="Self.Module" Multiplicity="1" />
+    <End Role="Scripts" Type="Self.Script" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Modules">
+        <PropertyRef Name="ModuleId" />
+      </Principal>
+      <Dependent Role="Scripts">
+        <PropertyRef Name="ModuleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Scripts__Operati__37A5467C">
+    <End Role="Operations" Type="Self.Operation" Multiplicity="1" />
+    <End Role="Scripts" Type="Self.Script" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operations">
+        <PropertyRef Name="OperationId" />
+      </Principal>
+      <Dependent Role="Scripts">
+        <PropertyRef Name="OperationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Parameter__Scrip__38996AB5">
+    <End Role="Scripts" Type="Self.Script" Multiplicity="1" />
+    <End Role="Parameters" Type="Self.Parameter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Scripts">
+        <PropertyRef Name="ScriptId" />
+      </Principal>
+      <Dependent Role="Parameters">
+        <PropertyRef Name="ScriptId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ShipbobInsightsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Modules" EntityType="Self.Module" />
+    <EntitySet Name="Operations" EntityType="Self.Operation" />
+    <EntitySet Name="Parameters" EntityType="Self.Parameter" />
+    <EntitySet Name="Scripts" EntityType="Self.Script" />
+    <AssociationSet Name="FK__Scripts__ModuleI__34C8D9D1" Association="Self.FK__Scripts__ModuleI__34C8D9D1">
+      <End Role="Modules" EntitySet="Modules" />
+      <End Role="Scripts" EntitySet="Scripts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Scripts__Operati__37A5467C" Association="Self.FK__Scripts__Operati__37A5467C">
+      <End Role="Operations" EntitySet="Operations" />
+      <End Role="Scripts" EntitySet="Scripts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Parameter__Scrip__38996AB5" Association="Self.FK__Parameter__Scrip__38996AB5">
+      <End Role="Scripts" EntitySet="Scripts" />
+      <End Role="Parameters" EntitySet="Parameters" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
