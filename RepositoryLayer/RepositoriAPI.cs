@@ -106,44 +106,21 @@ namespace RepositoryLayer
             {
                 using (ShipbobInsightsEntities db = new ShipbobInsightsEntities())
                 {
-                    string moduleTitle = Convert.ToString(list[0]);
-                    string operationTitle = Convert.ToString(list[1]);
                     string dbScript = Convert.ToString(list[2]);
-                    int moduleId = db.Modules
-                         .Where(s => s.Title == moduleTitle).Select(c1 => c1.ModuleId).SingleOrDefault();
-                    int operationId = db.Operations.Where(o => o.Operation_Title == operationTitle).Select(c2 => c2.OperationId).SingleOrDefault();
+                    int moduleId = int.Parse(list[0]);
+                    int operationId = int.Parse(list[1]);
 
                     Script script = new Script()
                     {
                         Script1 = list[2],
                         ModuleId = moduleId,
                         OperationId = operationId,
-                        Title = list[2].Replace("select *from", "").Replace("  ", " "),
-                        TableName = list[2].Replace("select *from", "").Replace("  ", " ")
+                        Title = list[3],
+                        TableName = list[3]
                     };
 
-
                     db.Scripts.Add(script);
-                    result=db.SaveChanges();
-
-                    var sId = db.Scripts.Where(w => w.Script1 == dbScript).FirstOrDefault();
-
-                    if (list.Length>3)
-                    {
-                        for (int i = 3; i < list.Length; i++)
-                        {
-                            Parameter parameter = new Parameter()
-                            {
-                                ParameterName = list[i],
-                                ParameterTitle = list[i],
-                                Type = "TextBox",
-                                ScriptId = sId.ScriptId
-                            };
-                            db.Parameters.Add(parameter);
-                        }
-                        db.SaveChanges();
-                    }
-
+                    result = db.SaveChanges();
                 }
                 return result;
             }

@@ -7,13 +7,12 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-
 namespace WebApiWithSwagger.Controllers
 {
     public class ModulesController : ApiController
     {
         Service service = new Service();
-         
+
         [ActionName("GetScriptDetailsDataByScriptQuery")]
         [HttpGet]
         public IHttpActionResult GetScriptDetailsDataByScriptQuery(string data)
@@ -25,16 +24,15 @@ namespace WebApiWithSwagger.Controllers
                 scriptInfo = service.RetrieveScriptDetailsDataByWhereData(data);//id is ScriptId
                 if (scriptInfo == null)
                 {
-                    return null;
+                    return BadRequest("Data Not found");
                 }
                 return Ok(scriptInfo);
             }
             catch (Exception ex)
             {
-                throw;
+                return Ok(ex.Message);
             }
         }
-
         [HttpGet]
         public IHttpActionResult InsertNewQueryInScripts(string data)
         {
@@ -46,11 +44,9 @@ namespace WebApiWithSwagger.Controllers
             }
             catch (Exception ex)
             {
-                throw;
+                return Ok(ex.Message);
             }
         }
-
-
         [HttpGet]
         public IHttpActionResult UpdateExistingQueryInScripts(string data)
         {
@@ -66,10 +62,10 @@ namespace WebApiWithSwagger.Controllers
             }
             catch (Exception ex)
             {
-                throw;
+                return Ok(ex.Message);
             }
         }
-
+        //gg
         [HttpGet]
         public IHttpActionResult GetAllModules(int id = 0)
         {
@@ -82,7 +78,7 @@ namespace WebApiWithSwagger.Controllers
                 }
                 else
                 {
-                   // modules = service.GetModuleListbyModuleId(id);
+                    // modules = service.GetModuleListbyModuleId(id);
                 }
                 if (modules == null)
                 {
@@ -92,25 +88,23 @@ namespace WebApiWithSwagger.Controllers
             }
             catch (Exception ex)
             {
-                throw;
+                return Ok(ex.Message);
             }
         }
-
         [HttpGet]
         public IHttpActionResult GetModuleListbyModuleId(string id)
         {
             try
             {
                 object modules = null;
-                modules = service.GetModuleListbyModuleId(id);                
+                modules = service.GetModuleListbyModuleId(id);
                 return Json(modules);
             }
             catch (Exception ex)
             {
-                throw;
+                return Ok(ex.Message);
             }
         }
-
         [HttpGet]
         public IHttpActionResult RetrieveScriptDetailsByScriptId(int id)
         {
@@ -126,9 +120,8 @@ namespace WebApiWithSwagger.Controllers
             }
             catch (Exception ex)
             {
-                throw;
+                return Ok(ex.Message);
             }
         }
-
     }
 }
