@@ -25,6 +25,7 @@ namespace WebApiWithSwagger.Controllers
                 scriptInfo = service.RetrieveScriptDetailsDataByWhereData(data);//id is ScriptId
                 if (scriptInfo == null)
                 {
+
                     return null;
                 }
                 return Ok(scriptInfo);
