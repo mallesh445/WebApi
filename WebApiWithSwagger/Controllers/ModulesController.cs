@@ -1,4 +1,5 @@
 ﻿using BusinessObjects;
+using Newtonsoft.Json;
 using ServiceLayer;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,8 @@ namespace WebApiWithSwagger.Controllers
             try
             {
                 object scriptInfo = null;
-                scriptInfo = service.InsertNewQueryInScripts(data);//id is ScriptId
+                ModuleEntity moduleEntity= JsonConvert.DeserializeObject<ModuleEntity>(data);
+                scriptInfo = service.InsertNewQueryInScripts(moduleEntity);//id is ScriptId
                 return Ok(scriptInfo);
             }
             catch (Exception ex)
@@ -53,7 +55,8 @@ namespace WebApiWithSwagger.Controllers
             try
             {
                 object scriptInfo = null;
-                scriptInfo = service.UpdateExistingQueryInScripts(data);//id is ScriptId
+                ModuleEntity moduleEntity = JsonConvert.DeserializeObject<ModuleEntity>(data);
+                scriptInfo = service.UpdateExistingQueryInScripts(moduleEntity);//id is ScriptId
                 if (scriptInfo == null)
                 {
                     return null;

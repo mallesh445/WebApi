@@ -64,27 +64,20 @@ namespace RepositoryLayer
             #endregion
         }
 
-        public static object UpdateExistingQueryInScriptsInDB(string data)
+        public static object UpdateExistingQueryInScriptsInDB(ModuleEntity moduleEntity)
         {
             object result = null;
-            string[] list = data.Split(',');
             try
             {
                 using (ShipbobInsightsEntities db = new ShipbobInsightsEntities())
-                {
-                    string moduleTitle = Convert.ToString(list[0]);
-                    string operationTitle = Convert.ToString(list[1]);
-                    int moduleId = db.Modules
-                         .Where(s => s.Title == moduleTitle).Select(c1 => c1.ModuleId).SingleOrDefault();
-                    int operationId = db.Operations.Where(o => o.Operation_Title == operationTitle).Select(c2 => c2.OperationId).SingleOrDefault();
-
+                { 
                     Script script = new Script()
                     {
-                        Script1 = list[2],
-                        ModuleId = moduleId,
-                        OperationId = operationId,
-                        Title = list[2].Replace("select *from ", "").Replace("  ", " "),
-                        TableName = list[2].Replace("select *from ", "").Replace("  ", " ")
+                        Script1 = moduleEntity.BuiltQuery,
+                        ModuleId = moduleEntity.SelectedModule,
+                        OperationId = moduleEntity.SelectedOperation,
+                        Title = moduleEntity.QueryTitle,
+                        TableName = moduleEntity.QueryTitle
                     };
 
                     db.Scripts.Add(script);
@@ -98,25 +91,25 @@ namespace RepositoryLayer
             }
         }
 
-        public static object InsertNewQueryInScriptsInDB(string data)
+        /// <summary>
+        /// Creates New Script in Db
+        /// </summary>
+        /// <param name="moduleEntity"></param>
+        /// <returns></returns>
+        public static object InsertNewQueryInScriptsInDB(ModuleEntity moduleEntity)
         {
             object result = null;
-            string[] list = data.Split(',');
             try
             {
                 using (ShipbobInsightsEntities db = new ShipbobInsightsEntities())
                 {
-                    string dbScript = Convert.ToString(list[2]);
-                    int moduleId = int.Parse(list[0]);
-                    int operationId = int.Parse(list[1]);
-
                     Script script = new Script()
                     {
-                        Script1 = list[2],
-                        ModuleId = moduleId,
-                        OperationId = operationId,
-                        Title = list[3],
-                        TableName = list[3]
+                        Script1 =moduleEntity.BuiltQuery,
+                        ModuleId = moduleEntity.SelectedModule,
+                        OperationId = moduleEntity.SelectedOperation,
+                        Title = moduleEntity.QueryTitle,
+                        TableName = moduleEntity.QueryTitle
                     };
 
                     db.Scripts.Add(script);
@@ -212,7 +205,7 @@ namespace RepositoryLayer
             {
                 using (System.Data.SqlClient.SqlConnection connection = new System.Data.SqlClient.SqlConnection(ProjectConstants.InsightsDBString))
                 {
-                    using (SqlDataAdapter adapter = new SqlDataAdapter("Select Title from Modules ", connection))
+                    using (SqlDataAdapter adapter = new SqlDataAdapter("Select Title, ModuleId from Modules ", connection))
                     {
                         DataTable table = new DataTable();
                         adapter.Fill(table);

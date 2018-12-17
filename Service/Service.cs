@@ -31,14 +31,14 @@ namespace ServiceLayer
             return RepositoriAPI.RetrieveScriptDetailsDataByWhereData(data);
         }
 
-        public object InsertNewQueryInScripts(string data)
+        public object InsertNewQueryInScripts(ModuleEntity moduleEntity)
         {
-            return RepositoriAPI.InsertNewQueryInScriptsInDB(data);
+            return RepositoriAPI.InsertNewQueryInScriptsInDB(moduleEntity);
         }
 
-        public object UpdateExistingQueryInScripts(string data)
+        public object UpdateExistingQueryInScripts(ModuleEntity moduleEntity)
         {
-            return RepositoriAPI.UpdateExistingQueryInScriptsInDB(data);
+            return RepositoriAPI.UpdateExistingQueryInScriptsInDB(moduleEntity);
         }
     }
 }
