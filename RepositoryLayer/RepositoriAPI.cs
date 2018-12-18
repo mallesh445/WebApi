@@ -16,16 +16,16 @@ namespace RepositoryLayer
         /// </summary>
         /// <param name="moduleId"></param>
         /// <returns></returns>
-        public static object GetScriptdetailsbyScriptId(int scriptId)
+        public static List<Script> GetScriptdetailsbyScriptId(int scriptId)
         {
             try
             {
                 using (ShipbobInsightsEntities sIe = new ShipbobInsightsEntities())
                 {
                     var result = sIe.Scripts
-                         .Include("Parameters")
+                         //.Include("Parameters")
                          .Where(s => s.ScriptId == scriptId).ToList();
-                    object obj = result;
+                    List<Script> obj = result;
                     return obj;
                 }
             }
@@ -70,17 +70,14 @@ namespace RepositoryLayer
             try
             {
                 using (ShipbobInsightsEntities db = new ShipbobInsightsEntities())
-                { 
-                    Script script = new Script()
-                    {
-                        Script1 = moduleEntity.BuiltQuery,
-                        ModuleId = moduleEntity.SelectedModule,
-                        OperationId = moduleEntity.SelectedOperation,
-                        Title = moduleEntity.QueryTitle,
-                        TableName = moduleEntity.QueryTitle
-                    };
+                {
+                    var updateScript = db.Scripts.Where(c1 => c1.ScriptId == moduleEntity.ScriptId).FirstOrDefault();
+                    updateScript.Script1 = moduleEntity.BuiltQuery;
+                    updateScript.ModuleId = moduleEntity.SelectedModule;
+                    updateScript.OperationId = moduleEntity.SelectedOperation;
+                    updateScript.Title = moduleEntity.QueryTitle;
+                    updateScript.TableName = moduleEntity.QueryTitle;
 
-                    db.Scripts.Add(script);
                     result = db.SaveChanges();
                 }
                 return result;
@@ -105,7 +102,7 @@ namespace RepositoryLayer
                 {
                     Script script = new Script()
                     {
-                        Script1 =moduleEntity.BuiltQuery,
+                        Script1 = moduleEntity.BuiltQuery,
                         ModuleId = moduleEntity.SelectedModule,
                         OperationId = moduleEntity.SelectedOperation,
                         Title = moduleEntity.QueryTitle,
@@ -128,14 +125,22 @@ namespace RepositoryLayer
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static object RetrieveScriptDetailsDataByWhereData(string data)
+        public static object RetrieveScriptDetailsDataByWhereData(ScriptEntity scriptEntity)
         {
             object result = null;
             try
             {
                 using (SqlConnection connection = new SqlConnection(ProjectConstants.DatabaseString))
                 {
-                    SqlCommand sqlCommand = new SqlCommand(data, connection);
+                    SqlCommand sqlCommand = new SqlCommand(scriptEntity.Script, connection);
+
+                    if (scriptEntity.Parameters != null && scriptEntity.Parameters.Count > 0)
+                    {
+                        foreach (var parameter in scriptEntity.Parameters)
+                        {
+                            sqlCommand.Parameters.AddWithValue(parameter.parameterName, parameter.parameterValue); 
+                        }
+                    }
 
                     using (SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand))
                     {
@@ -160,19 +165,20 @@ namespace RepositoryLayer
         /// </summary>
         /// <param name="moduleId"></param>
         /// <returns></returns>
-        public static object GetModuleListbyModuleId(string moduleName)
+        public static object GetModuleListbyModuleId(int moduleId)
         {
             object result = null;
             try
             {
                 using (ShipbobInsightsEntities sIe = new ShipbobInsightsEntities())
                 {
-                    string moduleId = sIe.Modules
-                         .Where(s => s.Title == moduleName).Select(c1 => c1.ModuleId).SingleOrDefault().ToString();
+                    //string moduleId = sIe.Modules
+                    //     .Where(s => s.ModuleId == moduleName).Select(c1 => c1.ModuleId).SingleOrDefault().ToString();
 
                     using (SqlConnection connection = new SqlConnection(ProjectConstants.InsightsDBString))
                     {
-                        SqlCommand sqlCommand = new SqlCommand("Select * from Scripts where ModuleId=@moduleid", connection);
+                        SqlCommand sqlCommand = new SqlCommand("Select S.*,M.Title as ModuleTitle from Scripts S join Modules M on s.ModuleId=M.ModuleId where M.ModuleId=@moduleid", connection);
+                        //SqlCommand sqlCommand = new SqlCommand("Select * from Scripts where ModuleId=@moduleid", connection);
                         sqlCommand.Parameters.AddWithValue("@moduleid", Convert.ToInt32(moduleId));
 
                         using (SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand))
@@ -222,7 +228,7 @@ namespace RepositoryLayer
             }
             return result;
         }
-        
-        
+
+
     }
 }

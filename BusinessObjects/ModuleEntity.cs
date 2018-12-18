@@ -40,6 +40,13 @@ namespace BusinessObjects
             get { return queryTitle; }
             set { queryTitle = value; }
         }
-        
+
+        private int scriptId;
+
+        public int ScriptId
+        {
+            get { return scriptId; }
+            set { scriptId = value; }
+        }
     }
 }

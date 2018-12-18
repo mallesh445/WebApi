@@ -8,21 +8,23 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Routing;
+
 namespace WebApiWithSwagger.Controllers
 {
     public class ModulesController : ApiController
     {
         Service service = new Service();
 
-        [ActionName("GetScriptDetailsDataByScriptQuery")]
-        [HttpGet]
-        public IHttpActionResult GetScriptDetailsDataByScriptQuery(string data)
+       [ActionName("GetScriptDetailsDataByScriptQuery")]
+        [HttpPost]
+        public IHttpActionResult GetScriptDetailsDataByScriptQuery(ScriptEntity scriptEntity)
         {
             try
             {
                 //data = "Select * from Warehousereceivingorder where RequestId = 112656 and UserId = 209478";//dummy request data
                 object scriptInfo = null;
-                scriptInfo = service.RetrieveScriptDetailsDataByWhereData(data);//id is ScriptId
+                scriptInfo = service.RetrieveScriptDetailsDataByWhereData(scriptEntity);//id is ScriptId
                 if (scriptInfo == null)
                 {
                     return BadRequest("Data Not found");
@@ -31,9 +33,10 @@ namespace WebApiWithSwagger.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
+
         [HttpGet]
         public IHttpActionResult InsertNewQueryInScripts(string data)
         {
@@ -46,7 +49,7 @@ namespace WebApiWithSwagger.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
         [HttpGet]
@@ -65,7 +68,7 @@ namespace WebApiWithSwagger.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
         //gg
@@ -95,7 +98,7 @@ namespace WebApiWithSwagger.Controllers
             }
         }
         [HttpGet]
-        public IHttpActionResult GetModuleListbyModuleId(string id)
+        public IHttpActionResult GetModuleListbyModuleId(int id)
         {
             try
             {
@@ -105,7 +108,7 @@ namespace WebApiWithSwagger.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
         [HttpGet]
@@ -115,6 +118,7 @@ namespace WebApiWithSwagger.Controllers
             {
                 object scriptInfo = null;
                 scriptInfo = service.GetScriptdetailsbyScriptId(id);//id is ScriptId
+                string json = JsonConvert.SerializeObject(scriptInfo);
                 if (scriptInfo == null)
                 {
                     return null;
@@ -123,7 +127,7 @@ namespace WebApiWithSwagger.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
     }
