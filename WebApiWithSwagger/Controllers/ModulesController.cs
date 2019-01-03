@@ -37,6 +37,27 @@ namespace WebApiWithSwagger.Controllers
             }
         }
 
+        [ActionName("UpdateQueryTitleByQueryId")]
+        [HttpPost]
+        public IHttpActionResult UpdateQueryTitleByQueryId(string id,string title)
+        {
+            try
+            {
+                //data = "Select * from Warehousereceivingorder where RequestId = 112656 and UserId = 209478";//dummy request data
+                object scriptInfo = null;
+                //scriptInfo = service.RetrieveScriptDetailsDataByWhereData(scriptEntity);//id is ScriptId
+                if (scriptInfo == null)
+                {
+                    return BadRequest("Data Not found");
+                }
+                return Ok(scriptInfo);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet]
         public IHttpActionResult InsertNewQueryInScripts(string data)
         {

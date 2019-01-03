@@ -39,6 +39,9 @@ namespace ServiceLayer
             {
                 BusinessObjects.Parameter parameter = new BusinessObjects.Parameter();
                 parameter.parameterName = match.Value;
+                parameter.controlType = "textbox";
+                parameter.label = match.Value.Substring(1);
+                parameter.required = true;
                 listParms.Add(parameter);
                 scriptEntity.Parameters.Add(parameter);
             }

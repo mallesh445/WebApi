@@ -11,5 +11,8 @@ namespace BusinessObjects
     {
         public string parameterName { get; set; }
         public string parameterValue { get; set; }
+        public bool required { get; set; }
+        public string label { get; set; }
+        public string controlType { get; set; }
     }
 }
